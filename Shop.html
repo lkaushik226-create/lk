@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop | Thrive With Kaushik</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">
+        <div class="logo">TK</div>
+        <span>Thrive With Kaushik</span>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="free.html">Free</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="vip.html">VIP</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Shop – Products & Services</h1>
+        <p>Products: Books, paintings, T-shirts. Services: Courses, coaching, consulting.</p>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+      <div class="container">
+        <h2>Products</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Stress Management Book</h3>
+            <p class="price">₹799</p>
+            <button onclick="addToCart('Stress Management Book', 799)" class="btn btn-small">Add to Cart</button>
+          </div>
+          <div class="card">
+            <h3>Motivational T-Shirt</h3>
+            <p class="price">₹999</p>
+            <button onclick="addToCart('Motivational T-Shirt', 999)" class="btn btn-small">Add to Cart</button>
+          </div>
+          <div class="card">
+            <h3>Wall Painting</h3>
+            <p class="price">₹2,499</p>
+            <button onclick="addToCart('Wall Painting', 2499)" class="btn btn-small">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <h2>Services</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Online Stress Management Course</h3>
+            <p class="price">₹5,999</p>
+            <button onclick="addToCart('Stress Management Course', 5999)" class="btn btn-small">Enroll Now</button>
+          </div>
+          <div class="card">
+            <h3>Business Coaching</h3>
+            <p class="price">Custom</p>
+            <a href="contact.html#business" class="btn btn-small">Enquire</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout Flow -->
+    <section id="checkout">
+      <div class="container">
+        <h2>Checkout</h2>
+        <div id="cart-summary" style="display:none; background:#1e293b; padding:1rem; border-radius:0.5rem; margin-bottom:1rem;">
+          <h3>Order Summary</h3>
+          <div id="cart-items"></div>
+          <p id="total-amount" class="price">Total: ₹0</p>
+        </div>
+
+        <form id="checkout-form" style="display:none;">
+          <!-- Customer Details -->
+          <div class="form-section">
+            <h3>1. Your Details</h3>
+            <input type="text" id="customer-name" placeholder="Full Name" required>
+            <input type="email" id="customer-email" placeholder="Email" required>
+            <input type="tel" id="customer-phone" placeholder="Mobile (e.g. 9953715382)" required>
+          </div>
+
+          <!-- Address -->
+          <div class="form-section">
+            <h3>2. Delivery / Service Address</h3>
+            <textarea id="customer-address" placeholder="Street, Area, City, State, PIN Code. For online services: mention 'Online'" required></textarea>
+            <select id="order-type">
+              <option>Physical Product (Delivery required)</option>
+              <option>Online Course / Service (No physical delivery)</option>
+            </select>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="form-section">
+            <h3>3. Choose Payment Method</h3>
+            <div class="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="payu" checked>
+                <span>PayU (Cards, Netbanking, UPI, Wallets)</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="razorpay">
+                <span>Razorpay (Cards, UPI, Wallets)</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="paytm">
+                <span>Paytm (UPI, Paytm Wallet, Cards)</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-method" value="gpay">
+                <span>Google Pay (UPI)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Cross-sell suggestions -->
+          <div class="cross-sell" style="display:none;">
+            <h3>You might also like</h3>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+              <div class="card">
+                <h4>Motivational T-Shirt</h4>
+                <p class="price">₹999</p>
+                <button onclick="addToCart('Motivational T-Shirt', 999)" class="btn btn-small">Add</button>
+              </div>
+              <div class="card">
+                <h4>Stress Management Book</h4>
+                <p class="price">₹799</p>
+                <button onclick="addToCart('Stress Management Book', 799)" class="btn btn-small">Add</button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn full-width">Confirm Order & Proceed to Payment</button>
+        </form>
+
+        <div id="payment-instructions" style="display:none;">
+          <h3>Next Steps</h3>
+          <p>You will be redirected to <span id="selected-gateway"></span> payment page.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Thrive With Kaushik | 9953715382 | <a href="mailto:thrivewithkaushik@gmail.com">thrivewithkaushik@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    let cart = [];
+
+    function addToCart(itemName, price) {
+      cart.push({name: itemName, price: price});
+      updateCart();
+      document.getElementById('checkout-form').style.display = 'block';
+      document.getElementById('cart-summary').style.display = 'block';
+      document.getElementById('checkout').scrollIntoView({behavior: 'smooth'});
+    }
+
+    function updateCart() {
+      const itemsDiv = document.getElementById('cart-items');
+      const totalDiv = document.getElementById('total-amount');
+      
+      if (cart.length === 0) {
+        itemsDiv.innerHTML = '<p>No items in cart</p>';
+        totalDiv.textContent = 'Total: ₹0';
+        return;
+      }
+
+      let html = '';
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        html += `<p>${item.name} - ₹${item.price}</p>`;
+        total += item.price;
+      });
+      
+      itemsDiv.innerHTML = html;
+      totalDiv.textContent = `Total: ₹${total}`;
+      
+      // Show cross-sell based on cart
+      if (cart.some(item => item.name.includes('Course'))) {
+        document.querySelector('.cross-sell').style.display = 'block';
+      }
+    }
+
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+      const gatewayName = {
+        'payu': 'PayU',
+        'razorpay': 'Razorpay',
+        'paytm': 'Paytm',
+        'gpay': 'Google Pay'
+      }[paymentMethod];
+      
+      document.getElementById('selected-gateway').textContent = gatewayName;
+      document.getElementById('payment-instructions').style.display = 'block';
+      
+      // Simulate redirect (replace with real backend call)
+      setTimeout(() => {
+        alert(`Redirecting to ${gatewayName}...\n\nNext: Send cart data to your backend → Generate payment link → Redirect user`);
+      }, 1000);
+      
+      // Real implementation:
+      // 1. POST to your backend: cart, customer details, paymentMethod
+      // 2. Backend creates order, generates hash/link for chosen gateway
+      // 3. Frontend redirects to gateway URL or opens checkout JS
+    });
+  </script>
+</body>
+</html>
